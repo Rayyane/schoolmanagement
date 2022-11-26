@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Prefix;
+use Illuminate\Http\Request;
 
 class PrefixController extends Controller
 {
@@ -15,6 +15,7 @@ class PrefixController extends Controller
     public function index()
     {
         $prefix = Prefix::all();
+
         return view('admin.prefixes.index', ['prefix' => $prefix]);
     }
 
@@ -37,9 +38,10 @@ class PrefixController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['prefix' => 'required|unique:prefixes',
-                                   'created_by' => 'required']);
+            'created_by' => 'required', ]);
         $data = $request->only('prefix', 'created_by');
         $prefix = Prefix::create($data);
+
         return redirect('/prefixes')->with('message', 'prefix added!');
     }
 
@@ -52,6 +54,7 @@ class PrefixController extends Controller
     public function show($id)
     {
         $prefix = Prefix::find($id);
+
         return view('admin.prefixes.show', ['prefix' => $prefix]);
     }
 
@@ -64,6 +67,7 @@ class PrefixController extends Controller
     public function edit($id)
     {
         $prefix = Prefix::find($id);
+
         return view('admin.prefixes.edit', ['prefix' => $prefix]);
     }
 
@@ -78,12 +82,12 @@ class PrefixController extends Controller
     {
         $prefix = Prefix::find($id);
         $this->validate($request, ['prefix' => 'required|unique:prefixes',
-                                   'created_by' => 'required']);
+            'created_by' => 'required', ]);
         $data = $request->only('prefix', 'created_by');
         $prefix->update($data);
+
         return redirect('/prefixes')->with('message', 'prefix updated!');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -95,11 +99,14 @@ class PrefixController extends Controller
     {
         $prefix = Prefix::find($id);
         $prefix->delete();
+
         return redirect('/prefixes')->with('message', 'prefix deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $prefixes = new Prefix();
+
         return $prefixes->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

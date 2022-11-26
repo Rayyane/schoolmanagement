@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
+
         return view('admin.categories.index', ['category' => $category]);
     }
 
@@ -37,9 +38,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['category_name' => 'required|unique:categories',
-                                   'created_by' => 'required']);
+            'created_by' => 'required', ]);
         $data = $request->only('category_name', 'created_by');
         $category = Category::create($data);
+
         return redirect('/categories')->with('message', 'expense category added!');
     }
 
@@ -52,6 +54,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
+
         return view('admin.categories.show', ['category' => $category]);
     }
 
@@ -64,6 +67,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+
         return view('admin.categories.edit', ['category' => $category]);
     }
 
@@ -78,9 +82,10 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $this->validate($request, ['category_name' => 'required|unique:categories',
-                                   'created_by' => 'required']);
+            'created_by' => 'required', ]);
         $data = $request->only('category_name', 'created_by');
         $category->update($data);
+
         return redirect('/categories')->with('message', 'expense category updated!');
     }
 
@@ -93,18 +98,21 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        try{
+        try {
             $category->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete this data');
+
             return redirect('/categories')->with('message', 'This category cannot be deleted');
         }
+
         return redirect('/categories')->with('message', 'Expense category deleted!');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $category = new Category();
+
         return $category->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

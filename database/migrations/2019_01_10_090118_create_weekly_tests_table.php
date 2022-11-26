@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateWeeklyTestsTable extends Migration
 {
@@ -19,7 +19,7 @@ class CreateWeeklyTestsTable extends Migration
             $table->string('Weekly_test_name');
             $table->softDeletes();
             $table->foreign('section_subject_teacher_id')->references('id')->on('section_subject_teachers');
-            
+
             $table->timestamps();
         });
     }

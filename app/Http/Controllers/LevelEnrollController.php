@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\LevelEnroll;
 use Illuminate\Http\Request;
 
-
 class LevelEnrollController extends Controller
 {
     /**
@@ -17,7 +16,7 @@ class LevelEnrollController extends Controller
     {
         $level_enrolls = LevelEnroll::all();
 
-        return view ('admin.level_enrolls.index', ['level_enrolls' => $level_enrolls]);
+        return view('admin.level_enrolls.index', ['level_enrolls' => $level_enrolls]);
     }
 
     /**
@@ -84,20 +83,23 @@ class LevelEnrollController extends Controller
     public function destroy($id, Request $request)
     {
         $level_enroll = LevelEnroll::find($id);
-        
+
         //return redirect('/levelEnrolls')->with('message', 'class deleted');
-        try{
+        try {
             $level_enroll->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete class');
+
             return redirect('/levelEnrolls')->with('message', 'Class cannot be deleted');
         }
+
         return redirect('/levelEnrolls')->with('message', 'Class deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $level_enroll = new LevelEnroll();
+
         return $level_enroll->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddMonthAndFeesTypeToCollectedFees extends Migration
 {
@@ -14,8 +14,8 @@ class AddMonthAndFeesTypeToCollectedFees extends Migration
     public function up()
     {
         Schema::table('collected_fees', function (Blueprint $table) {
-              $table->string('business_month_id')->after('total_due');
-              $table->string('section_wise_fees_ids')->after('business_month_id');
+            $table->string('business_month_id')->after('total_due');
+            $table->string('section_wise_fees_ids')->after('business_month_id');
         });
     }
 
@@ -27,8 +27,8 @@ class AddMonthAndFeesTypeToCollectedFees extends Migration
     public function down()
     {
         Schema::table('collected_fees', function (Blueprint $table) {
-             $table->dropColumn('business_month_id');
-             $table->dropColumn('section_wise_fees_ids');
+            $table->dropColumn('business_month_id');
+            $table->dropColumn('section_wise_fees_ids');
         });
     }
 }

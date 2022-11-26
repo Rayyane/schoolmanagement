@@ -15,7 +15,8 @@ class SessionController extends Controller
     public function index()
     {
         $sessions = Session::all();
-        return view('admin.sessions.index', ['sessions'=>$sessions]);
+
+        return view('admin.sessions.index', ['sessions' => $sessions]);
     }
 
     /**
@@ -64,7 +65,8 @@ class SessionController extends Controller
     public function edit($id)
     {
         $session = Session::find($id);
-        return view ('admin.sessions.edit', ['session' => $session]);
+
+        return view('admin.sessions.edit', ['session' => $session]);
     }
 
     /**
@@ -78,6 +80,7 @@ class SessionController extends Controller
     {
         $data = $request->only('name', 'starts_from', 'ends_to');
         $session->update($data);
+
         return redirect('/sessions')->with('message', 'Session updated');
     }
 
@@ -92,16 +95,17 @@ class SessionController extends Controller
         $session = Session::find($id);
         try {
             $session->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/sessions')->with('message', 'This session cannot be Deleted');
         }
-        
+
         return redirect('/sessions')->with('message', 'Session Deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $session = new Session();
+
         return $session->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

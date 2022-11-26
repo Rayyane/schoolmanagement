@@ -7,41 +7,48 @@ use Illuminate\Database\Eloquent\Model;
 class FeesBook extends Model
 {
     protected $fillable = [
-    	'branch_id', 'creator_user_id', 'teacher_id', 'total_leaf', 'leaf_start_number',
-    	'leaf_end_number', 'prefix_id'
+        'branch_id', 'creator_user_id', 'teacher_id', 'total_leaf', 'leaf_start_number',
+        'leaf_end_number', 'prefix_id',
     ];
 
-    public function branch() {
-    	return $this->belongsTo('App\Branch');
+    public function branch()
+    {
+        return $this->belongsTo('App\Branch');
     }
 
-    public function teacher() {
-    	return $this->belongsTo('App\Teacher');
+    public function teacher()
+    {
+        return $this->belongsTo('App\Teacher');
     }
 
-    public function prefix() {
+    public function prefix()
+    {
         return $this->belongsTo('App\Prefix');
     }
 
-    public function countRow() {
+    public function countRow()
+    {
         $totalData = $this::query();
+
         return $totalData->select('*')->count();
     }
 
-    public function GetListForDataTable($limit = 20, $offset = 0, $search = "", $status = 0){
+    public function GetListForDataTable($limit = 20, $offset = 0, $search = '', $status = 0)
+    {
         $totalData = $this::query();
         $filterData = $this::query();
 
-        if ($status == 1){
+        if ($status == 1) {
             $totalData->where('where', 1);
             $filterData->where('where', 1);
         }
 
-        if ($limit == -1)
+        if ($limit == -1) {
             $limit = 999999;
+        }
 
-        return array(
-            'data'   =>   $totalData->where('total_leaf', 'like', '%'.$search.'%')
+        return [
+            'data' => $totalData->where('total_leaf', 'like', '%'.$search.'%')
                 ->orwhere('leaf_start_number', 'like', '%'.$search.'%')
                 ->orwhere('leaf_end_number', 'like', '%'.$search.'%')->with('branch')->with('teacher')
                 ->with('prefix')
@@ -53,7 +60,6 @@ class FeesBook extends Model
             'recordsTotal' => $this->countRow(),
             'recordsFiltered' => $filterData->where('total_leaf', 'like', '%'.$search.'%')
                 ->count(),
-        );
-
+        ];
     }
 }

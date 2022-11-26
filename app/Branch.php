@@ -8,48 +8,57 @@ class Branch extends Model
 {
     //
     protected $fillable = [
-        'name', 'address', 'contact_no', 'email', 'area_id'
+        'name', 'address', 'contact_no', 'email', 'area_id',
     ];
 
-    public function area() {
+    public function area()
+    {
         return $this->belongsTo('App\Area');
     }
 
-    public function shift() {
+    public function shift()
+    {
         return $this->hasMany('App\Shift');
     }
 
-    public function level_enroll() {
+    public function level_enroll()
+    {
         return $this->hasMany('App\LevelEnroll');
     }
 
-    public function fiscal_year() {
+    public function fiscal_year()
+    {
         return $this->hasMany('App\FiscalYear');
     }
 
-    public function fees_book() {
+    public function fees_book()
+    {
         return $this->hasMany('App\FeesBook');
     }
 
-    public function countRow() {
+    public function countRow()
+    {
         $totalData = $this::query();
+
         return $totalData->select('*')->count();
     }
 
-    public function GetListForDataTable($limit = 20, $offset = 0, $search = "", $status = 0){
+    public function GetListForDataTable($limit = 20, $offset = 0, $search = '', $status = 0)
+    {
         $totalData = $this::query();
         $filterData = $this::query();
 
-        if ($status == 1){
+        if ($status == 1) {
             $totalData->where('where', 1);
             $filterData->where('where', 1);
         }
 
-        if ($limit == -1)
+        if ($limit == -1) {
             $limit = 999999;
+        }
 
-        return array(
-            'data'   =>   $totalData->where('name', 'like', '%'.$search.'%')
+        return [
+            'data' => $totalData->where('name', 'like', '%'.$search.'%')
                 ->orwhere('email', 'like', '%'.$search.'%')
                 ->orwhere('contact_no', 'like', '%'.$search.'%')
                 ->offset($offset)
@@ -60,9 +69,6 @@ class Branch extends Model
             'recordsTotal' => $this->countRow(),
             'recordsFiltered' => $filterData->where('name', 'like', '%'.$search.'%')
                 ->count(),
-        );
-
+        ];
     }
-
-
 }

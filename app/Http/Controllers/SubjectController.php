@@ -17,7 +17,8 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::all();
-        return view ('admin.subjects.index', ['subjects' => $subjects]);
+
+        return view('admin.subjects.index', ['subjects' => $subjects]);
     }
 
     /**
@@ -29,7 +30,7 @@ class SubjectController extends Controller
     {
         /*$levels = Level::pluck('class_name', 'id');
         $teachers = Teacher::pluck('teacher_name', 'id');*/
-        return view ('admin.subjects.create'/*, ['levels' => $levels, 'teachers' => $teachers]*/);
+        return view('admin.subjects.create'/*, ['levels' => $levels, 'teachers' => $teachers]*/);
     }
 
     /**
@@ -44,6 +45,7 @@ class SubjectController extends Controller
         $data = $request->only('subject_name');
         //dd($data);
         $subject = Subject::create($data);
+
         return redirect('/subjects')->with('message', 'subject added');
     }
 
@@ -84,6 +86,7 @@ class SubjectController extends Controller
         $data = $request->only('subject_name');
 
         $subject->update($data);
+
         return redirect('/subjects')->with('message', 'subject updated');
     }
 
@@ -98,16 +101,17 @@ class SubjectController extends Controller
         $subject = Subject::find($id);
         try {
             $subject->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/subjects')->with('message', 'This subject cannot be deleted');
         }
-        
+
         return redirect('/subjects')->with('message', 'Subject deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $subject = new Subject();
+
         return $subject->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

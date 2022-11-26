@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\SectionSubjectTeacher;
-use Validator;
 use Illuminate\Http\Request;
 
 class SectionSubjectTeacherController extends Controller
@@ -16,6 +15,7 @@ class SectionSubjectTeacherController extends Controller
     public function index()
     {
         $section_subject_teacher = SectionSubjectTeacher::all();
+
         return view('admin.section_subject_teachers.index', ['section_subject_teachers' => $section_subject_teacher]);
     }
 
@@ -85,16 +85,17 @@ class SectionSubjectTeacherController extends Controller
         $section_subject_teacher = SectionSubjectTeacher::find($id);
         try {
             $section_subject_teacher->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/sectionSubjectTeachers')->with('message', 'This subject cannot be deleted');
         }
-        
+
         return redirect('/sectionSubjectTeachers')->with('message', 'Subject deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $section_subject_teacher = new SectionSubjectTeacher();
+
         return $section_subject_teacher->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

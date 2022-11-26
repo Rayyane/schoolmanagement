@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\LevelEnroll;
+use App\FinalReport;
+use App\FinalResult;
 use App\Level;
-use App\Session;
+use App\LevelEnroll;
 use App\Section;
 use App\SectionStudent;
-use App\TermResult;
-use App\FinalResult;
-use App\FinalReport;
+use App\Session;
 use App\Student;
-use Validator;
+use App\TermResult;
 use Illuminate\Http\Request;
+use Validator;
 
 class FinalReportController extends Controller
 {
@@ -26,9 +26,9 @@ class FinalReportController extends Controller
         $sessions = Session::with('level_enroll.level', 'level_enroll.section')->get();
         $levels = Level::with('level_enroll.section')->get();
         $sections = Section::pluck('section_name', 'id');
-        
+
         return view('admin.final_reports.index', [
-            'sections' => $sections, 'sessions' => $sessions, 'levels' => $levels]);
+            'sections' => $sections, 'sessions' => $sessions, 'levels' => $levels, ]);
     }
 
     /**
@@ -99,7 +99,8 @@ class FinalReportController extends Controller
         //
     }
 
-    public function viewStudents(Request $request) {
+    public function viewStudents(Request $request)
+    {
         $section_id = $request->section_id;
         $processor = request()->user()->name;
         //dd($section_id);
@@ -108,18 +109,17 @@ class FinalReportController extends Controller
                                     ->where('processor', $processor)
                                     ->get();
 
-        if(count($final_result) > 0) {
+        if (count($final_result) > 0) {
             return view('admin.final_reports.view_students', ['section_id' => $section_id,
-            'section_students' => $section_students]);
-        }
-        else {
+                'section_students' => $section_students, ]);
+        } else {
             return view('admin.final_reports.generate_students_result', ['section_id' => $section_id,
-            'section_students' => $section_students]);
+                'section_students' => $section_students, ]);
         }
-        
     }
 
-    public function processStudents(Request $request) {
+    public function processStudents(Request $request)
+    {
         $section_id = $request->section_id;
         //dd($request);
         for ($i = 0; $i < count($request->student_id); $i++) {
@@ -137,11 +137,9 @@ class FinalReportController extends Controller
                                         ->where('processor', $processor)
                                         ->get();
             //dd(count($final_result));
-            if(count($final_result) == 0) {
+            if (count($final_result) == 0) {
                 $final_result = FinalResult::create($data);
-            }
-            
-            else{
+            } else {
                 $final_result = $final_result->first();
             }
 
@@ -160,9 +158,9 @@ class FinalReportController extends Controller
             for ($j = 0; $j < count($term_results); $j++) {
                 $section_subject_teacher_id = $term_results[$j]->section_subject_teacher_id;
                 $marks = $term_results[$j]->total_marks;
-                //$subject_wise_result[$section_subject_teacher_id] = 
+                //$subject_wise_result[$section_subject_teacher_id] =
                 //$marks + $subject_wise_result[$section_subject_teacher_id];
-                $previousMarks =  isset($subject_wise_result[$section_subject_teacher_id]) ? $subject_wise_result[$section_subject_teacher_id] : 0;
+                $previousMarks = isset($subject_wise_result[$section_subject_teacher_id]) ? $subject_wise_result[$section_subject_teacher_id] : 0;
 
                 $subject_wise_result[$section_subject_teacher_id] = $marks + $previousMarks;
                 //dd($subject_term_result[1]);
@@ -171,11 +169,11 @@ class FinalReportController extends Controller
                 echo "<br>";*/
             }
 
-            for ($k = 0; $k < sizeof($section_subject_teacher_id_array); $k++) {
+            for ($k = 0; $k < count($section_subject_teacher_id_array); $k++) {
                 $section_subject_teacher_id = $section_subject_teacher_id_array[$k];
                 //dd($subject_wise_result[$section_subject_teacher_id]);
-                $subject_wise_result[$section_subject_teacher_id] = $subject_wise_result[$section_subject_teacher_id]/
-                sizeof($term_id_array);
+                $subject_wise_result[$section_subject_teacher_id] = $subject_wise_result[$section_subject_teacher_id] /
+                count($term_id_array);
                 $this_subject_result = $subject_wise_result[$section_subject_teacher_id];
                 /*echo $subject_wise_result[$section_subject_teacher_id];
                 echo " ";*/
@@ -184,26 +182,25 @@ class FinalReportController extends Controller
                 $report_data = ['section_subject_teacher_id' => $section_subject_teacher_id, 'subject_marks' => $subject_wise_result[$section_subject_teacher_id], 'student_id' => $student_id, 'final_result_id' => $final_result_id];
                 /*******************/
                 $validation = Validator::make(['section_subject_teacher_id' => $section_subject_teacher_id, 'subject_marks' => $this_subject_result, 'student_id' => $student_id], [], []);
-                $validation->after(function ($validation) use($section_subject_teacher_id, $this_subject_result, $student_id)  {
-                        $checkCombination = FinalReport::where('section_subject_teacher_id', $section_subject_teacher_id)
+                $validation->after(function ($validation) use ($section_subject_teacher_id, $this_subject_result, $student_id) {
+                    $checkCombination = FinalReport::where('section_subject_teacher_id', $section_subject_teacher_id)
                                                         ->where('subject_marks', $this_subject_result)
                                                         ->where('student_id', $student_id)
                                                         ->get();
-                        if (count($checkCombination) > 0) {
-                                $validation->errors()->add('section_subject_teacher_id', 'Class already exists, please choose another class.')
+                    if (count($checkCombination) > 0) {
+                        $validation->errors()->add('section_subject_teacher_id', 'Class already exists, please choose another class.')
                                                     ->add('subject_marks', 'Session already exists, please choose another session.')
                                                     ->add('student_id', 'Shift already exists, please choose another shift.');
-                                                    }                                
-
-                           });
+                    }
+                });
 
                 if ($validation->fails()) {
-                        foreach ($validation->errors()->all() as $error) {
-                            //dd($error);
-                            $message = $error;
-                            return redirect('/final_reports/'.$section_id);
-                        }
-                        
+                    foreach ($validation->errors()->all() as $error) {
+                        //dd($error);
+                        $message = $error;
+
+                        return redirect('/final_reports/'.$section_id);
+                    }
                 } else {
                     //dd($data);
                     $final_report = FinalReport::create($report_data);
@@ -215,27 +212,28 @@ class FinalReportController extends Controller
                     echo $data[$z];
                     echo " ";
                 }*/
-                
             }
         }
+
         return redirect('/final_reports/'.$section_id);
     }
 
     //reProcessStudents
 
-    public function reProcessStudents(Request $request) {
+    public function reProcessStudents(Request $request)
+    {
         $section_id = $request->section_id;
         $processor = request()->user()->name;
         $data = ['section_id' => $section_id, 'processor' => $processor];
         $final_results = FinalResult::where('section_id', $section_id)->get();
         foreach ($final_results as $final_result) {
-                $final_result->delete();
+            $final_result->delete();
         }
         $final_result = FinalResult::create($data);
         $final_result_id = $final_result->id;
         $final_reports = FinalReport::where('final_result_id', $final_result_id)->get();
         foreach ($final_reports as $final_report) {
-                $final_report->delete();
+            $final_report->delete();
         }
         //dd($request);
         for ($i = 0; $i < count($request->student_id); $i++) {
@@ -244,8 +242,6 @@ class FinalReportController extends Controller
             ->where('student_id', $student_id)
             ->get()->first();
             $section_student_id = $section_student->id;
-            
-            
 
             $term_results = TermResult::where('section_student_id', $section_student_id)->get();
             $subject_wise_result = [];
@@ -262,9 +258,9 @@ class FinalReportController extends Controller
             for ($j = 0; $j < count($term_results); $j++) {
                 $section_subject_teacher_id = $term_results[$j]->section_subject_teacher_id;
                 $marks = $term_results[$j]->total_marks;
-                //$subject_wise_result[$section_subject_teacher_id] = 
+                //$subject_wise_result[$section_subject_teacher_id] =
                 //$marks + $subject_wise_result[$section_subject_teacher_id];
-                $previousMarks =  isset($subject_wise_result[$section_subject_teacher_id]) ? $subject_wise_result[$section_subject_teacher_id] : 0;
+                $previousMarks = isset($subject_wise_result[$section_subject_teacher_id]) ? $subject_wise_result[$section_subject_teacher_id] : 0;
 
                 $subject_wise_result[$section_subject_teacher_id] = $marks + $previousMarks;
                 //dd($subject_term_result[1]);
@@ -273,11 +269,11 @@ class FinalReportController extends Controller
                 echo "<br>";*/
             }
 
-            for ($k = 0; $k < sizeof($section_subject_teacher_id_array); $k++) {
+            for ($k = 0; $k < count($section_subject_teacher_id_array); $k++) {
                 $section_subject_teacher_id = $section_subject_teacher_id_array[$k];
                 //dd($subject_wise_result[$section_subject_teacher_id]);
-                $subject_wise_result[$section_subject_teacher_id] = $subject_wise_result[$section_subject_teacher_id]/
-                sizeof($term_id_array);
+                $subject_wise_result[$section_subject_teacher_id] = $subject_wise_result[$section_subject_teacher_id] /
+                count($term_id_array);
                 $this_subject_result = $subject_wise_result[$section_subject_teacher_id];
                 /*echo $subject_wise_result[$section_subject_teacher_id];
                 echo " ";*/
@@ -285,16 +281,18 @@ class FinalReportController extends Controller
                 //dd($student_id);
                 $report_data = ['section_subject_teacher_id' => $section_subject_teacher_id, 'subject_marks' => $subject_wise_result[$section_subject_teacher_id], 'student_id' => $student_id, 'final_result_id' => $final_result_id];
                 /*******************/
-                
+
                 /*******************/
-                
+
                 $final_report = FinalReport::create($report_data);
             }
         }
+
         return redirect('/final_reports/'.$section_id);
     }
 
-    public function processSpecificStudents($id) {
+    public function processSpecificStudents($id)
+    {
         $student_id = $id;
         $student = Student::find($student_id);
         $section_student_id = SectionStudent::where('student_id', $student_id)->get()->first()->id;
@@ -304,14 +302,16 @@ class FinalReportController extends Controller
         $level = Level::find($level_enroll->level_id);
         $session = Session::find($level_enroll->session_id);
         $final_reports = FinalReport::where('student_id', $student_id)->get();
-        return view('admin.final_report_view.view_student_final_report', 
+
+        return view('admin.final_report_view.view_student_final_report',
         [
-        'final_reports' => $final_reports, 'student' => $student, 'section' => $section, 'session' => $session,
-        'level' => $level
+            'final_reports' => $final_reports, 'student' => $student, 'section' => $section, 'session' => $session,
+            'level' => $level,
         ]);
     }
 
-    public function pdfReportFinal($id) {
+    public function pdfReportFinal($id)
+    {
         $student_id = $id;
         $student = Student::find($student_id);
         $section_student_id = SectionStudent::where('student_id', $student_id)->get()->first()->id;
@@ -326,7 +326,7 @@ class FinalReportController extends Controller
 
         $html = view('admin.final_report_view.view_student_pdf_final_report')
         ->with(['final_reports' => $final_reports, 'student' => $student, 'section' => $section, 'session' => $session,
-        'level' => $level]);
+            'level' => $level, ]);
         $mpdf->SetHTMLFooter('
         <table width="100%">
             <tr>
@@ -338,5 +338,4 @@ class FinalReportController extends Controller
         $mpdf->WriteHTML($html);
         $mpdf->Output();
     }
-    
 }

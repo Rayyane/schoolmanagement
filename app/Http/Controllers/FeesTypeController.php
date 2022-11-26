@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\FeesType;
+use Illuminate\Http\Request;
 
 class FeesTypeController extends Controller
 {
@@ -14,6 +15,7 @@ class FeesTypeController extends Controller
     public function index()
     {
         $fees_type = FeesType::all();
+
         return view('admin.fees_types.index', ['fees_type' => $fees_type]);
     }
 
@@ -36,11 +38,12 @@ class FeesTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['fees_type_name' => 'required',
-                                   'user_id' => 'required'
-                                   ]);
+            'user_id' => 'required',
+        ]);
         $data = $request->only('fees_type_name', 'user_id');
         //dd($data);
         $fees_type = FeesType::create($data);
+
         return redirect('/fees_types')->with('message', 'Fees Type added!');
     }
 
@@ -53,6 +56,7 @@ class FeesTypeController extends Controller
     public function show($id)
     {
         $fees_type = FeesType::find($id);
+
         return view('admin.fees_types.show', ['fees_type' => $fees_type]);
     }
 
@@ -65,6 +69,7 @@ class FeesTypeController extends Controller
     public function edit($id)
     {
         $fees_type = FeesType::find($id);
+
         return view('admin.fees_types.edit', ['fees_type' => $fees_type]);
     }
 
@@ -79,11 +84,12 @@ class FeesTypeController extends Controller
     {
         $fees_type = FeesType::find($id);
         $this->validate($request, ['fees_type_name' => 'required',
-                                   'user_id' => 'required'
-                                   ]);
+            'user_id' => 'required',
+        ]);
         $data = $request->only('fees_type_name', 'user_id');
         //dd($data);
         $fees_type->update($data);
+
         return redirect('/fees_types')->with('message', 'Data Updated!');
     }
 
@@ -96,18 +102,21 @@ class FeesTypeController extends Controller
     public function destroy($id)
     {
         $fees_type = FeesType::find($id);
-        try{
+        try {
             $fees_type->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete this DATA');
+
             return redirect('/fees_types')->with('message', 'This data cannot be deleted');
         }
+
         return redirect('/fees_types')->with('message', 'Data Deleted!');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $fees_type = new FeesType();
+
         return $fees_type->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Supplier;
 use App\Category;
+use App\Supplier;
+use Illuminate\Http\Request;
 use Validator;
 
 class SupplierController extends Controller
@@ -17,6 +17,7 @@ class SupplierController extends Controller
     public function index()
     {
         $supplier = Supplier::all();
+
         return view('admin.suppliers.index', ['supplier' => $supplier]);
     }
 
@@ -28,8 +29,8 @@ class SupplierController extends Controller
     public function create()
     {
         $categories = Category::pluck('category_name', 'id');
-        return view('admin.suppliers.create', ['categories' => $categories]);
 
+        return view('admin.suppliers.create', ['categories' => $categories]);
     }
 
     /**
@@ -46,10 +47,10 @@ class SupplierController extends Controller
         $data = ['category_id' => $category_id, 'supplier_name' => $supplier_name];
 
         $validation = Validator::make([
-            'category_id' => $category_id, 'supplier_name' => $supplier_name
-        ],[],[]);
+            'category_id' => $category_id, 'supplier_name' => $supplier_name,
+        ], [], []);
 
-        $validation->after(function ($validation) use ($category_id, $supplier_name){
+        $validation->after(function ($validation) use ($category_id, $supplier_name) {
             $checkCombination = Supplier::where('category_id', $category_id)
                                         ->where('supplier_name', $supplier_name)
                                         ->get();
@@ -61,16 +62,15 @@ class SupplierController extends Controller
         });
 
         if ($validation->fails()) {
-
             foreach ($validation->errors()->all() as $error) {
                 //dd($error);
                 $message = $error;
             }
-        }
-        else {
+        } else {
             $supplier = Supplier::create($data);
+
             return redirect('/suppliers')->with('message', 'supplier added');
-        }   
+        }
 
         return redirect('/suppliers')->with('message', 'supplier could not be added');
     }
@@ -84,6 +84,7 @@ class SupplierController extends Controller
     public function show($id)
     {
         $supplier = Supplier::find($id);
+
         return view('admin.suppliers.show', ['supplier' => $supplier]);
     }
 
@@ -97,6 +98,7 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         $categories = Category::pluck('category_name', 'id');
+
         return view('admin.suppliers.edit', ['categories' => $categories, 'supplier' => $supplier]);
     }
 
@@ -116,10 +118,10 @@ class SupplierController extends Controller
         $data = ['category_id' => $category_id, 'supplier_name' => $supplier_name];
 
         $validation = Validator::make([
-            'category_id' => $category_id, 'supplier_name' => $supplier_name
-        ],[],[]);
+            'category_id' => $category_id, 'supplier_name' => $supplier_name,
+        ], [], []);
 
-        $validation->after(function ($validation) use ($category_id, $supplier_name){
+        $validation->after(function ($validation) use ($category_id, $supplier_name) {
             $checkCombination = Supplier::where('category_id', $category_id)
                                         ->where('supplier_name', $supplier_name)
                                         ->get();
@@ -131,16 +133,15 @@ class SupplierController extends Controller
         });
 
         if ($validation->fails()) {
-
             foreach ($validation->errors()->all() as $error) {
                 //dd($error);
                 $message = $error;
             }
-        }
-        else {
+        } else {
             $supplier->update($data);
+
             return redirect('/suppliers')->with('message', 'supplier updated');
-        }   
+        }
 
         return redirect('/suppliers')->with('message', 'supplier could not be updated');
     }
@@ -154,18 +155,21 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         $supplier = Supplier::find($id);
-        try{
+        try {
             $supplier->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete this data');
+
             return redirect('/suppliers')->with('message', 'This supplier cannot be deleted');
         }
+
         return redirect('/suppliers')->with('message', 'supplier deteted!');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $supplier = new Supplier();
+
         return $supplier->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),
