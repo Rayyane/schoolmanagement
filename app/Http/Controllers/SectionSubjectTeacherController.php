@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SectionSubjectTeacher;
+use App\Models\SectionSubjectTeacher;
 use Illuminate\Http\Request;
 
 class SectionSubjectTeacherController extends Controller

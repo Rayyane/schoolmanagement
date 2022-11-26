@@ -51,12 +51,12 @@ Weekly Result
 								
 										<?php
 										$sec_sub_teacher = 
-										\App\SectionSubjectTeacher::find($student_subject_result->section_subject_teacher_id);
+										\App\Models\SectionSubjectTeacher::find($student_subject_result->section_subject_teacher_id);
 
 										$subject = 
-										\App\Subject::find($sec_sub_teacher->subject_id);
+										\App\Models\Subject::find($sec_sub_teacher->subject_id);
             							
-            							$student = \App\Student::find($student_subject_result->student_id);
+            							$student = \App\Models\Student::find($student_subject_result->student_id);
 										?>
 
 										<tr>

@@ -10,11 +10,11 @@
 @section('content')
 <div class="content">
     <?php
-    $section_student = \App\SectionStudent::where('student_id', $student->id)->get()->first();
+    $section_student = \App\Models\SectionStudent::where('student_id', $student->id)->get()->first();
     
     if($section_student!= null) {
-      $section = \App\Section::find($section_student->section_id);
-      $level = \App\Level::find(\App\LevelEnroll::find($section->level_enroll_id)->level_id); 
+      $section = \App\Models\Section::find($section_student->section_id);
+      $level = \App\Models\Level::find(\App\Models\LevelEnroll::find($section->level_enroll_id)->level_id); 
     }
     else {
       //dd($section_student);

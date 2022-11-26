@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\FinalReport;
-use App\FinalResult;
-use App\Level;
-use App\LevelEnroll;
-use App\Section;
-use App\SectionStudent;
-use App\Session;
-use App\Student;
-use App\TermResult;
+use App\Models\FinalReport;
+use App\Models\FinalResult;
+use App\Models\Level;
+use App\Models\LevelEnroll;
+use App\Models\Section;
+use App\Models\SectionStudent;
+use App\Models\Session;
+use App\Models\Student;
+use App\Models\TermResult;
 use Illuminate\Http\Request;
 use Validator;
 

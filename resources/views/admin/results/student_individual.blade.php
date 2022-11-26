@@ -47,7 +47,7 @@
                                         @foreach($results as $result)
                                             <tr>
                                                 <?php
-                                                $subject = \App\Subject::find($result->subject_id)
+                                                $subject = \App\Models\Subject::find($result->subject_id)
                                                 ?>
                                                 <td> {{$result->test_number}} </td>
                                                 <td> {{$subject->subject_name}} </td>

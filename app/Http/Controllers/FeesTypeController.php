@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FeesType;
+use App\Models\FeesType;
 use Illuminate\Http\Request;
 
 class FeesTypeController extends Controller

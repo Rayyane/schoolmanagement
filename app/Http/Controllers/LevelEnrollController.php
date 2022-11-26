@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LevelEnroll;
+use App\Models\LevelEnroll;
 use Illuminate\Http\Request;
 
 class LevelEnrollController extends Controller

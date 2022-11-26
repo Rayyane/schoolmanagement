@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Term;
+use App\Models\Term;
 use Illuminate\Http\Request;
 
 class TermController extends Controller

@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\FinalResult;
-use App\Level;
-use App\LevelEnroll;
-use App\Section;
-use App\SectionStudent;
-use App\SectionSubjectTeacher;
-use App\SelectedId;
-use App\Session;
-use App\Student;
-use App\StudentSubjectResult;
-use App\Subject;
-use App\Term;
-use App\TermResult;
-use App\WeeklyTest;
+use App\Models\FinalResult;
+use App\Models\Level;
+use App\Models\LevelEnroll;
+use App\Models\Section;
+use App\Models\SectionStudent;
+use App\Models\SectionSubjectTeacher;
+use App\Models\SelectedId;
+use App\Models\Session;
+use App\Models\Student;
+use App\Models\StudentSubjectResult;
+use App\Models\Subject;
+use App\Models\Term;
+use App\Models\TermResult;
+use App\Models\WeeklyTest;
 use Illuminate\Http\Request;
 use PDF;
 use Validator;
@@ -68,7 +68,7 @@ class WeeklyTestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WeeklyTest  $weeklyTest
+     * @param  \App\Models\WeeklyTest  $weeklyTest
      * @return \Illuminate\Http\Response
      */
     public function show(WeeklyTest $weeklyTest)

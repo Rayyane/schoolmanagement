@@ -37,13 +37,13 @@
 
                                             <?php
                                             $section_subject_teacher =
-                                                \App\SectionSubjectTeacher::find($section_subject_teacher_id);
+                                                \App\Models\SectionSubjectTeacher::find($section_subject_teacher_id);
 
                                             $subject =
-                                                \App\Subject::find($section_subject_teacher->subject_id);
+                                                \App\Models\Subject::find($section_subject_teacher->subject_id);
 
                                             $student_subject_results =
-                                                \App\StudentSubjectResult::where('section_subject_teacher_id', $section_subject_teacher_id)
+                                                \App\Models\StudentSubjectResult::where('section_subject_teacher_id', $section_subject_teacher_id)
                                                     ->where('student_id', $student->id)
                                                     ->where('term_id', $term_id)
                                                     ->get();

@@ -6,8 +6,8 @@
 @section('content')
 <div class="container">
     <?php
-    $branch = \App\Branch::find($fiscal_year->branch_id);
-    $user = \App\User::find($fiscal_year->user_id);
+    $branch = \App\Models\Branch::find($fiscal_year->branch_id);
+    $user = \App\Models\User::find($fiscal_year->user_id);
     ?>
     <br>
     <div class="row">

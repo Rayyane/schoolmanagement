@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -50,7 +50,7 @@ class AreaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Area  $area
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
     public function show(Area $area)
@@ -74,7 +74,7 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Area  $area
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Area $area)
@@ -88,7 +88,7 @@ class AreaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Area  $area
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
     public function destroy($id, Request $request)

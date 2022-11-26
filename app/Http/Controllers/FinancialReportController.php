@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Branch;
-use App\BusinessMonth;
-use App\CollectedFees;
-use App\FiscalYear;
-use App\Level;
-use App\LevelEnroll;
-use App\Prefix;
-use App\Section;
-use App\SectionStudent;
-use App\Session;
-use App\Student;
-use App\User;
-use App\Voucher;
+use App\Models\Branch;
+use App\Models\BusinessMonth;
+use App\Models\CollectedFees;
+use App\Models\FiscalYear;
+use App\Models\Level;
+use App\Models\LevelEnroll;
+use App\Models\Prefix;
+use App\Models\Section;
+use App\Models\SectionStudent;
+use App\Models\Session;
+use App\Models\Student;
+use App\Models\User;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 class FinancialReportController extends Controller

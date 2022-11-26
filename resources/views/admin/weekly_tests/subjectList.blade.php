@@ -39,7 +39,7 @@
                                             <tbody>
 
                                                 <?php
-                                                $subject = \App\Subject::find($sec_sub_teach->subject_id);
+                                                $subject = \App\Models\Subject::find($sec_sub_teach->subject_id);
                                                 //dd($subject);
                                                 ?>
                                                 
@@ -106,7 +106,7 @@
                                             <tbody>
 
                                                 <?php
-                                                $student = \App\Student::find($section_student->student_id);
+                                                $student = \App\Models\Student::find($section_student->student_id);
                                                 
                                                 //dd($subject);
                                                 ?>

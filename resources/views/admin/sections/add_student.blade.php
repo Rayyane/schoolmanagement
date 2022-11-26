@@ -10,7 +10,7 @@ Sections
 	<?php
 		$url = Session::get('sectionIndexURL');
 		//dd($url);
-		$section = \App\Section::find($section->id);
+		$section = \App\Models\Section::find($section->id);
 	?>
 
 

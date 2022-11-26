@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Level;
-use App\Result;
-use App\Student;
-use App\Subject;
+use App\Models\Level;
+use App\Models\Result;
+use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 

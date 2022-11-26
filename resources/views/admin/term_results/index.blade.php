@@ -18,13 +18,13 @@
                     <?php
                     //dd($term_results);
                     $section_student_id = $term_results->first()->section_student_id;
-                    $section_student = \App\SectionStudent::find($section_student_id);
-                    $student = \App\Student::find($section_student->student_id);
-                    $term = \App\Term::find($term_results->first()->term_id);
-                    $section = \App\Section::find($section_student->section_id);
-                    $level_enroll = \App\LevelEnroll::find($section->level_enroll_id);
-                    $level = \App\Level::find($level_enroll->level_id);
-                    $session = \App\Session::find($level_enroll->session_id);
+                    $section_student = \App\Models\SectionStudent::find($section_student_id);
+                    $student = \App\Models\Student::find($section_student->student_id);
+                    $term = \App\Models\Term::find($term_results->first()->term_id);
+                    $section = \App\Models\Section::find($section_student->section_id);
+                    $level_enroll = \App\Models\LevelEnroll::find($section->level_enroll_id);
+                    $level = \App\Models\Level::find($level_enroll->level_id);
+                    $session = \App\Models\Session::find($level_enroll->session_id);
 
                     ?>
                     <div class="panel-heading" style="background-color: #e6e6e6;">
@@ -103,10 +103,10 @@
                                             <?php
 
                                             $section_subject_teacher =
-                                                \App\SectionSubjectTeacher::find($term_result->section_subject_teacher_id);
+                                                \App\Models\SectionSubjectTeacher::find($term_result->section_subject_teacher_id);
 
                                             $subject =
-                                                \App\Subject::find($section_subject_teacher->subject_id);
+                                                \App\Models\Subject::find($section_subject_teacher->subject_id);
 
                                             $term_adjusted = (($term_result->term_marks) * 80) / 100;
 

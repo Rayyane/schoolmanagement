@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\BusinessMonth;
-use App\FiscalYear;
+use App\Models\BusinessMonth;
+use App\Models\FiscalYear;
 use Illuminate\Http\Request;
 use Validator;
 

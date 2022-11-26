@@ -6,7 +6,7 @@ Branches
 @section('content')
 <div class="container">
     <?php
-    $area = \App\Area::find($branch->area_id);
+    $area = \App\Models\Area::find($branch->area_id);
     ?>
     <br>
     <div class="row">

@@ -41,7 +41,7 @@
                                         <tbody>
 
                                             <?php
-                                            $student = \App\Student::find($section_student->student_id);
+                                            $student = \App\Models\Student::find($section_student->student_id);
                                             ?>
                                             
                                         <tr>
@@ -79,7 +79,7 @@
                                             {!! Form::hidden('section_id', $section_id, ['class'=> '']) !!}
                                             @foreach($section_students as $section_student)
                                             <?php
-                                            $student = \App\Student::find($section_student->student_id);
+                                            $student = \App\Models\Student::find($section_student->student_id);
                                             ?>
                                             {!! Form::hidden('student_id[]', $student->id, ['class'=> '']) !!}
                                             @endforeach

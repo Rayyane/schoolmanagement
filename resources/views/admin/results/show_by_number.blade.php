@@ -28,8 +28,8 @@
                                         </thead>
                                         @foreach($results as $result)
                                             <?php
-                                            $student = \App\Student::find($result->student_id);
-                                            $subject = \App\Subject::find($result->subject_id);
+                                            $student = \App\Models\Student::find($result->student_id);
+                                            $subject = \App\Models\Subject::find($result->subject_id);
                                             ?>
                                             <tr>
                                                 <td> {{$result->test_number}} </td>

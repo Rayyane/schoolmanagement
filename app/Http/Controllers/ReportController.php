@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TermResult;
+use App\Models\TermResult;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -15,14 +15,14 @@ class ReportController extends Controller
         //dd($section_student_id);
         $term_results = TermResult::where('section_student_id', $section_student_id)->where('term_id', $term_id)->get();
         //dd($term_results);
-        $section_student = \App\SectionStudent::find($section_student_id);
-        $student = \App\Student::find($section_student->student_id);
-        $term = \App\Term::find($term_id);
+        $section_student = \App\Models\SectionStudent::find($section_student_id);
+        $student = \App\Models\Student::find($section_student->student_id);
+        $term = \App\Models\Term::find($term_id);
         //dd($term);
-        $section = \App\Section::find($section_student->section_id);
-        $level_enroll = \App\LevelEnroll::find($section->level_enroll_id);
-        $level = \App\Level::find($level_enroll->level_id);
-        $session = \App\Session::find($level_enroll->session_id);
+        $section = \App\Models\Section::find($section_student->section_id);
+        $level_enroll = \App\Models\LevelEnroll::find($section->level_enroll_id);
+        $level = \App\Models\Level::find($level_enroll->level_id);
+        $session = \App\Models\Session::find($level_enroll->session_id);
         //dd(count($term_results));
         $mpdf = new \Mpdf\Mpdf();
 

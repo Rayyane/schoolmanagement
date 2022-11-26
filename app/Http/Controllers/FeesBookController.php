@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Branch;
-use App\CollectedFees;
-use App\FeesBook;
-use App\Prefix;
-use App\Teacher;
+use App\Models\Branch;
+use App\Models\CollectedFees;
+use App\Models\FeesBook;
+use App\Models\Prefix;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Validator;
 

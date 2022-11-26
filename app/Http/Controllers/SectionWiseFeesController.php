@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\BusinessMonth;
-use App\FeesType;
-use App\Level;
-use App\Section;
-use App\SectionWiseFees;
-use App\Session;
+use App\Models\BusinessMonth;
+use App\Models\FeesType;
+use App\Models\Level;
+use App\Models\Section;
+use App\Models\SectionWiseFees;
+use App\Models\Session;
 use Illuminate\Http\Request;
 use Validator;
 

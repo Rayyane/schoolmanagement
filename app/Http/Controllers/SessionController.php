@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Session;
+use App\Models\Session;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -47,7 +47,7 @@ class SessionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Session  $session
+     * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
     public function show(Session $session)
@@ -59,7 +59,7 @@ class SessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Session  $session
+     * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -73,7 +73,7 @@ class SessionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Session  $session
+     * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Session $session)
@@ -87,7 +87,7 @@ class SessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Session  $session
+     * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

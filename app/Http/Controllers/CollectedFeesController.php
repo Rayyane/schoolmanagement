@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\BusinessMonth;
-use App\CollectedFees;
-use App\Level;
-use App\PaymentMethod;
-use App\Prefix;
-use App\Section;
-use App\SectionStudent;
-use App\SectionWiseFees;
-use App\Session;
-use App\Student;
+use App\Models\BusinessMonth;
+use App\Models\CollectedFees;
+use App\Models\Level;
+use App\Models\PaymentMethod;
+use App\Models\Prefix;
+use App\Models\Section;
+use App\Models\SectionStudent;
+use App\Models\SectionWiseFees;
+use App\Models\Session;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use NumberToWords\NumberToWords;
 

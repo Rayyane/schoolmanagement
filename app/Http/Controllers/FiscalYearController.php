@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Branch;
-use App\FiscalYear;
+use App\Models\Branch;
+use App\Models\FiscalYear;
 use Illuminate\Http\Request;
 
 class FiscalYearController extends Controller

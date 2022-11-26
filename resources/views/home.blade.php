@@ -52,7 +52,7 @@ Dashboard
                             <hr />
                             <div class="stats">
                                 <i class="ti-home"></i>
-                                {{ \App\Branch::count() }}
+                                {{ \App\Models\Branch::count() }}
 
 
                             </div>
@@ -80,7 +80,7 @@ Dashboard
                             <hr />
                             <div class="stats">
                                 <i class="ti-user"></i>
-                                {{\App\Teacher::count()}}
+                                {{\App\Models\Teacher::count()}}
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ Dashboard
                             <hr />
                             <div class="stats">
                                 <i class="ti-ruler-pencil"></i>
-                                {{\App\Student::count()}}
+                                {{\App\Models\Student::count()}}
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ Dashboard
                             <hr />
                             <div class="stats">
                                 <i class="ti-reload"></i>
-                                {{\App\Shift::count()}}
+                                {{\App\Models\Shift::count()}}
                             </div>
                         </div>
                     </div>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Branch;
-use App\Level;
-use App\Result;
-use App\Section;
-use App\Shift;
-use App\Student;
-use App\Subject;
+use App\Models\Branch;
+use App\Models\Level;
+use App\Models\Result;
+use App\Models\Section;
+use App\Models\Shift;
+use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -97,7 +97,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
     public function show(Student $student)
@@ -112,7 +112,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Student  $id
+     * @param  \App\Models\Student  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -128,7 +128,7 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Student $student)
@@ -187,7 +187,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $id
+     * @param  \App\Models\Student  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

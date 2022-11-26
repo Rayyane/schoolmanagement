@@ -6,8 +6,8 @@
 @section('content')
 <div class="container">
     <?php
-    $category = \App\Category::find($supplier->category_id);
-    $user = \App\User::find($supplier->created_by);
+    $category = \App\Models\Category::find($supplier->category_id);
+    $user = \App\Models\User::find($supplier->created_by);
     ?>
     <br>
     <div class="row">

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
-use App\Branch;
+use App\Models\Area;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
@@ -55,7 +55,7 @@ class BranchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Branch  $branch
+     * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
     public function show(Branch $branch)
@@ -68,7 +68,7 @@ class BranchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Branch  $id
+     * @param  \App\Models\Branch  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,7 +83,7 @@ class BranchController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Branch  $branch
+     * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Branch $branch)
@@ -97,7 +97,7 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Branch  $branch
+     * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
     public function destroy($id, Request $request)

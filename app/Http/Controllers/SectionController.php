@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Level;
-use App\LevelEnroll;
-use App\Section;
-use App\SectionStudent;
-use App\SectionSubjectTeacher;
-use App\Session;
-use App\Student;
-use App\Subject;
-use App\Teacher;
+use App\Models\Level;
+use App\Models\LevelEnroll;
+use App\Models\Section;
+use App\Models\SectionStudent;
+use App\Models\SectionSubjectTeacher;
+use App\Models\Session;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -66,7 +66,7 @@ class SectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Section  $section
+     * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function show(Section $section)
@@ -82,7 +82,7 @@ class SectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Section  $section
+     * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -99,7 +99,7 @@ class SectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Section  $section
+     * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Section $section)
@@ -113,7 +113,7 @@ class SectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Section  $section
+     * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
