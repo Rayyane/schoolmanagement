@@ -10,12 +10,12 @@ class FiscalYear extends Model
 
     public function branch()
     {
-        return $this->belongsTo('App\Branch');
+        return $this->belongsTo(\App\Branch::class);
     }
 
     public function business_month()
     {
-        return $this->hasMany('App\BusinessMonth');
+        return $this->hasMany(\App\BusinessMonth::class);
     }
 
     public function countRow()

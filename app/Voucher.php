@@ -13,12 +13,12 @@ class Voucher extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo(\App\Category::class);
     }
 
     public function supplier()
     {
-        return $this->belongsTo('App\Supplier');
+        return $this->belongsTo(\App\Supplier::class);
     }
 
     public function countRow()

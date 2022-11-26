@@ -10,17 +10,17 @@ class Result extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(\App\Student::class);
     }
 
     public function subject()
     {
-        return $this->belongsTo('App\Subject');
+        return $this->belongsTo(\App\Subject::class);
     }
 
     public function session()
     {
-        return $this->belongsTo('App\Session');
+        return $this->belongsTo(\App\Session::class);
     }
 
     public function countRow()

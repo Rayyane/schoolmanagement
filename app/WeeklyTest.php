@@ -10,11 +10,11 @@ class WeeklyTest extends Model
 
     public function student()
     {
-        return $this->hasMany('App\Student');
+        return $this->hasMany(\App\Student::class);
     }
 
     public function subject()
     {
-        return $this->hasMany('App\Subject');
+        return $this->hasMany(\App\Subject::class);
     }
 }

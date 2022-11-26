@@ -10,7 +10,7 @@ class Level extends Model
 
     public function level_enroll()
     {
-        return $this->hasMany('App\LevelEnroll');
+        return $this->hasMany(\App\LevelEnroll::class);
     }
 
     /*public function session() {

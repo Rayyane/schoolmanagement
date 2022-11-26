@@ -10,16 +10,16 @@ class FinalReport extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(\App\Student::class);
     }
 
     public function final_result()
     {
-        return $this->belongsTo('App\FinalResult');
+        return $this->belongsTo(\App\FinalResult::class);
     }
 
     public function section_subject_teacher()
     {
-        return $this->belongsTo('App\SectionSubjectTeacher');
+        return $this->belongsTo(\App\SectionSubjectTeacher::class);
     }
 }

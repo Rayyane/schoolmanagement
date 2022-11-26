@@ -13,17 +13,17 @@ class FeesBook extends Model
 
     public function branch()
     {
-        return $this->belongsTo('App\Branch');
+        return $this->belongsTo(\App\Branch::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo(\App\Teacher::class);
     }
 
     public function prefix()
     {
-        return $this->belongsTo('App\Prefix');
+        return $this->belongsTo(\App\Prefix::class);
     }
 
     public function countRow()

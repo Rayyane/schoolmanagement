@@ -12,26 +12,26 @@ class StudentSubjectResult extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(\App\Student::class);
     }
 
     public function section_subject_teacher()
     {
-        return $this->belongsTo('App\SectionSubjectTeacher');
+        return $this->belongsTo(\App\SectionSubjectTeacher::class);
     }
 
     public function term_result()
     {
-        return $this->hasMany('App\TermResult');
+        return $this->hasMany(\App\TermResult::class);
     }
 
     public function selected_id()
     {
-        return $this->belongsTo('App\SelectedId');
+        return $this->belongsTo(\App\SelectedId::class);
     }
 
     public function term()
     {
-        return $this->belongsTo('App\Term');
+        return $this->belongsTo(\App\Term::class);
     }
 }

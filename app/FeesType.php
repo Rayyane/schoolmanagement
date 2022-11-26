@@ -12,7 +12,7 @@ class FeesType extends Model
 
     public function section_wise_fees()
     {
-        return $this->hasMany('App\SectionWiseFees');
+        return $this->hasMany(\App\SectionWiseFees::class);
     }
 
     public function countRow()

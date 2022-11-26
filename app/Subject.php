@@ -10,12 +10,12 @@ class Subject extends Model
 
     public function section_subject_teacher()
     {
-        return $this->hasMany('App\SectionSubjectTeacher');
+        return $this->hasMany(\App\SectionSubjectTeacher::class);
     }
 
     public function result()
     {
-        return $this->belongsTo('App\Result');
+        return $this->belongsTo(\App\Result::class);
     }
 
     public function countRow()

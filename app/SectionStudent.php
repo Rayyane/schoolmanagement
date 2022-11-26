@@ -10,22 +10,22 @@ class SectionStudent extends Model
 
     public function section()
     {
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo(\App\Section::class);
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(\App\Student::class);
     }
 
     public function term_result()
     {
-        return $this->hasMany('App\TermResult');
+        return $this->hasMany(\App\TermResult::class);
     }
 
     public function collected_fees()
     {
-        return $this->hasMany('App\CollectedFees');
+        return $this->hasMany(\App\CollectedFees::class);
     }
 
     public function countRow()

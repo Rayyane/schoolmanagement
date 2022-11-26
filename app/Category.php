@@ -10,7 +10,7 @@ class Category extends Model
 
     public function supplier()
     {
-        return $this->hasMany('App\Supplier');
+        return $this->hasMany(\App\Supplier::class);
     }
 
     public function countRow()

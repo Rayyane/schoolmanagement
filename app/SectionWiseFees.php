@@ -12,22 +12,22 @@ class SectionWiseFees extends Model
 
     public function session()
     {
-        return $this->belongsTo('App\Session');
+        return $this->belongsTo(\App\Session::class);
     }
 
     public function section()
     {
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo(\App\Section::class);
     }
 
     public function fees_type()
     {
-        return $this->belongsTo('App\FeesType');
+        return $this->belongsTo(\App\FeesType::class);
     }
 
     public function business_month()
     {
-        return $this->belongsTo('App\BusinessMonth');
+        return $this->belongsTo(\App\BusinessMonth::class);
     }
 
     public function countRow()

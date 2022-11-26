@@ -10,37 +10,37 @@ class SectionSubjectTeacher extends Model
 
     public function subject()
     {
-        return $this->belongsTo('App\Subject');
+        return $this->belongsTo(\App\Subject::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo(\App\Teacher::class);
     }
 
     public function section()
     {
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo(\App\Section::class);
     }
 
     public function term_result()
     {
-        return $this->hasMany('App\TermResult');
+        return $this->hasMany(\App\TermResult::class);
     }
 
     public function student_subject_result()
     {
-        return $this->hasOne('App\StudentSubjectResult');
+        return $this->hasOne(\App\StudentSubjectResult::class);
     }
 
     public function weekly_test()
     {
-        return $this->hasMany('App\Weekly_Test');
+        return $this->hasMany(\App\Weekly_Test::class);
     }
 
     public function final_report()
     {
-        return $this->hasMany('App\FinalReport');
+        return $this->hasMany(\App\FinalReport::class);
     }
 
     public function countRow()

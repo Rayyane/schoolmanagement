@@ -10,7 +10,7 @@ class Prefix extends Model
 
     public function fees_book()
     {
-        return $this->hasMany('App\FeesBook');
+        return $this->hasMany(\App\FeesBook::class);
     }
 
     public function countRow()

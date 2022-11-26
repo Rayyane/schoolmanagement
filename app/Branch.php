@@ -13,27 +13,27 @@ class Branch extends Model
 
     public function area()
     {
-        return $this->belongsTo('App\Area');
+        return $this->belongsTo(\App\Area::class);
     }
 
     public function shift()
     {
-        return $this->hasMany('App\Shift');
+        return $this->hasMany(\App\Shift::class);
     }
 
     public function level_enroll()
     {
-        return $this->hasMany('App\LevelEnroll');
+        return $this->hasMany(\App\LevelEnroll::class);
     }
 
     public function fiscal_year()
     {
-        return $this->hasMany('App\FiscalYear');
+        return $this->hasMany(\App\FiscalYear::class);
     }
 
     public function fees_book()
     {
-        return $this->hasMany('App\FeesBook');
+        return $this->hasMany(\App\FeesBook::class);
     }
 
     public function countRow()

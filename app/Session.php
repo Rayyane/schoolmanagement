@@ -12,22 +12,22 @@ class Session extends Model
 
     public function level_enroll()
     {
-        return $this->hasMany('App\LevelEnroll');
+        return $this->hasMany(\App\LevelEnroll::class);
     }
 
     public function section()
     {
-        return $this->hasMany('App\Section');
+        return $this->hasMany(\App\Section::class);
     }
 
     public function result()
     {
-        return $this->hasMany('App\Result');
+        return $this->hasMany(\App\Result::class);
     }
 
     public function section_wise_fees()
     {
-        return $this->hasMany('App\SectionWiseFees');
+        return $this->hasMany(\App\SectionWiseFees::class);
     }
 
     public function countRow()

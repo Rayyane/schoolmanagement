@@ -13,17 +13,17 @@ class CollectedFees extends Model
 
     public function section_student()
     {
-        return $this->belongsTo('App\SectionStudent');
+        return $this->belongsTo(\App\SectionStudent::class);
     }
 
     public function payment_method()
     {
-        return $this->belongsTo('App\PaymentMethod');
+        return $this->belongsTo(\App\PaymentMethod::class);
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(\App\Student::class);
     }
 
     public function countRow()

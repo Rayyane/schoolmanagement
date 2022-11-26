@@ -13,17 +13,17 @@ class Teacher extends Model
 
     public function section_subject_teacher()
     {
-        return $this->hasMany('App\SectionSubjectTeacher');
+        return $this->hasMany(\App\SectionSubjectTeacher::class);
     }
 
     public function weekly_test_result()
     {
-        return $this->hasMany('App\Weekly_Test_Result');
+        return $this->hasMany(\App\Weekly_Test_Result::class);
     }
 
     public function fees_book()
     {
-        return $this->hasMany('App\FeesBook');
+        return $this->hasMany(\App\FeesBook::class);
     }
 
     public function countRow()

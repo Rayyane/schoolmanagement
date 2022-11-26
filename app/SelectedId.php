@@ -12,11 +12,11 @@ class SelectedId extends Model
 
     public function term_result()
     {
-        return $this->belongsTo('App\TermResult');
+        return $this->belongsTo(\App\TermResult::class);
     }
 
     public function student_subject_result()
     {
-        return $this->hasMany('App\StudentSubjectResult');
+        return $this->hasMany(\App\StudentSubjectResult::class);
     }
 }

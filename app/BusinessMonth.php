@@ -12,12 +12,12 @@ class BusinessMonth extends Model
 
     public function fiscal_year()
     {
-        return $this->belongsTo('App\FiscalYear');
+        return $this->belongsTo(\App\FiscalYear::class);
     }
 
     public function section_wise_fees()
     {
-        return $this->hasMany('App\SectionWiseFees');
+        return $this->hasMany(\App\SectionWiseFees::class);
     }
 
     public function countRow()

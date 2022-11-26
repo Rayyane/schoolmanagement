@@ -12,7 +12,7 @@ class PaymentMethod extends Model
 
     public function collected_fees()
     {
-        return $this->hasMany('App\CollectedFees');
+        return $this->hasMany(\App\CollectedFees::class);
     }
 
     public function countRow()

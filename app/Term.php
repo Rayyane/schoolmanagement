@@ -12,12 +12,12 @@ class Term extends Model
 
     public function student_subject_result()
     {
-        return $this->hasMany('App\StudentSubjectResult');
+        return $this->hasMany(\App\StudentSubjectResult::class);
     }
 
     public function term_result()
     {
-        return $this->hasMany('App\TermResult');
+        return $this->hasMany(\App\TermResult::class);
     }
 
     public function countRow()

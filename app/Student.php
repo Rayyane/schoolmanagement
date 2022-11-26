@@ -14,22 +14,22 @@ class Student extends Model
 
     public function section_student()
     {
-        return $this->hasOne('App\SectionStudent');
+        return $this->hasOne(\App\SectionStudent::class);
     }
 
     public function weekly_test_result()
     {
-        return $this->hasMany('App\Weekly_Test_Result');
+        return $this->hasMany(\App\Weekly_Test_Result::class);
     }
 
     public function final_report()
     {
-        return $this->hasMany('App\FinalReport');
+        return $this->hasMany(\App\FinalReport::class);
     }
 
     public function collected_fees()
     {
-        return $this->hasMany('App\CollectedFees');
+        return $this->hasMany(\App\CollectedFees::class);
     }
 
     public function countRow()

@@ -11,21 +11,21 @@ class TermResult extends Model
 
     public function section_student()
     {
-        return $this->belongsTo('App\SectionStudent');
+        return $this->belongsTo(\App\SectionStudent::class);
     }
 
     public function section_subject_teacher()
     {
-        return $this->belongsTo('App\SectionSubjectTeacher');
+        return $this->belongsTo(\App\SectionSubjectTeacher::class);
     }
 
     public function selected_id()
     {
-        return $this->hasMany('App\SelectedId');
+        return $this->hasMany(\App\SelectedId::class);
     }
 
     public function term()
     {
-        return $this->belongsTo('App\Term');
+        return $this->belongsTo(\App\Term::class);
     }
 }

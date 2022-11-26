@@ -12,12 +12,12 @@ class Shift extends Model
 
     public function branch()
     {
-        return $this->belongsTo('App\Branch');
+        return $this->belongsTo(\App\Branch::class);
     }
 
     public function level_enroll()
     {
-        return $this->hasMany('App\LevelEnroll');
+        return $this->hasMany(\App\LevelEnroll::class);
     }
 
     public function countRow()

@@ -12,7 +12,7 @@ class Area extends Model
 
     public function branch()
     {
-        return $this->hasMany('App\Branch');
+        return $this->hasMany(\App\Branch::class);
     }
 
     public function countRow()

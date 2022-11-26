@@ -10,27 +10,27 @@ class LevelEnroll extends Model
 
     public function level()
     {
-        return $this->belongsTo('App\Level');
+        return $this->belongsTo(\App\Level::class);
     }
 
     public function session()
     {
-        return $this->belongsTo('App\Session');
+        return $this->belongsTo(\App\Session::class);
     }
 
     public function branch()
     {
-        return $this->belongsTo('App\Branch');
+        return $this->belongsTo(\App\Branch::class);
     }
 
     public function shift()
     {
-        return $this->belongsTo('App\Shift');
+        return $this->belongsTo(\App\Shift::class);
     }
 
     public function section()
     {
-        return $this->hasMany('App\Section');
+        return $this->hasMany(\App\Section::class);
     }
 
     public function countRow()

@@ -12,32 +12,32 @@ class Section extends Model
 
     public function level_enroll()
     {
-        return $this->belongsTo('App\LevelEnroll');
+        return $this->belongsTo(\App\LevelEnroll::class);
     }
 
     public function section_student()
     {
-        return $this->hasMany('App\SectionStudent');
+        return $this->hasMany(\App\SectionStudent::class);
     }
 
     public function section_subject_teacher()
     {
-        return $this->hasMany('App\SectionSubjectTeacher');
+        return $this->hasMany(\App\SectionSubjectTeacher::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo(\App\Teacher::class);
     }
 
     public function final_result()
     {
-        return $this->hasMany('App\FinalResult');
+        return $this->hasMany(\App\FinalResult::class);
     }
 
     public function section_wise_fees()
     {
-        return $this->hasMany('App\SectionWiseFees');
+        return $this->hasMany(\App\SectionWiseFees::class);
     }
 
     public function countRow()

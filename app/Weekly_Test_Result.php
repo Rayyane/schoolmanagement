@@ -10,16 +10,16 @@ class Weekly_Test_Result extends Model
 
     public function weekly_test()
     {
-        return $this->belongsTo('App\Weekly_Test');
+        return $this->belongsTo(\App\Weekly_Test::class);
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo(\App\Student::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo(\App\Teacher::class);
     }
 }

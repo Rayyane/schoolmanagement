@@ -10,11 +10,11 @@ class FinalResult extends Model
 
     public function section()
     {
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo(\App\Section::class);
     }
 
     public function final_report()
     {
-        return $this->hasMany('App\FinalReport');
+        return $this->hasMany(\App\FinalReport::class);
     }
 }
