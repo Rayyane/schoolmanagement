@@ -43,7 +43,7 @@
                                             <tbody>
 
                                                 <?php
-                                                $student = \App\Student::find($section_student->student_id);
+                                                $student = \App\Models\Student::find($section_student->student_id);
                                                 ?>
                                                 
                                             <tr>

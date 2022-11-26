@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
-use App\Branch;
+use App\Models\Area;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
@@ -28,6 +28,7 @@ class BranchController extends Controller
     public function create()
     {
         $areas = Area::pluck('name', 'id');
+
         return view('admin.branches.create', ['areas' => $areas]);
     }
 
@@ -40,39 +41,41 @@ class BranchController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['name' => 'required|unique:branches',
-                                   'address' => 'required',
-                                   'contact_no' => 'required|numeric',
-                                   'email' => 'required|email'    
-                                    ]);
+            'address' => 'required',
+            'contact_no' => 'required|numeric',
+            'email' => 'required|email',
+        ]);
         $data = $request->only('name', 'address', 'contact_no', 'email', 'area_id');
 
         $branch = Branch::create($data);
-        return redirect('/branches')->with('message', 'branch added');
 
+        return redirect('/branches')->with('message', 'branch added');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Branch  $branch
+     * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
     public function show(Branch $branch)
     {
         $shifts = $branch->shift()->get();
+
         return view('admin.branches.show', ['branch' => $branch, 'shifts' => $shifts]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Branch  $id
+     * @param  \App\Models\Branch  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $branch = Branch::find($id);
         $areas = Area::pluck('name', 'id');
+
         return view('admin.branches.edit', ['branch' => $branch, 'areas' => $areas]);
     }
 
@@ -80,13 +83,13 @@ class BranchController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Branch  $branch
+     * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Branch $branch)
     {
         $data = $request->only('name', 'address', 'contact_no', 'email', 'area_id');
-        $branch -> update($data);
+        $branch->update($data);
 
         return redirect('/branches')->with('message', 'branch updated');
     }
@@ -94,25 +97,25 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Branch  $branch
+     * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
     public function destroy($id, Request $request)
     {
         $branch = Branch::find($id);
-        try{
+        try {
             $branch->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete section');
+
             return redirect('/branches')->with('message', 'This branch cannot be deleted');
         }
+
         return redirect('/branches')->with('message', 'Branch deleted');
-        
-        
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         /*$areas = Area::all();
         $area = $areas->first();
         dd($area);*/

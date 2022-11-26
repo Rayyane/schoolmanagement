@@ -12,7 +12,7 @@ Weekly Result
     Session::put('viewStudentResultURL', $viewStudentResultURL);
     //dd(Session::get('viewStudentResultURL'));
 	$url = Session::get('viewSubjectsURL');
-	$term = \App\Term::find($term_id);
+	$term = \App\Models\Term::find($term_id);
 	//dd($isGenerated);
 	?>
 	<br>
@@ -80,10 +80,10 @@ Weekly Result
 										<?php
 										
 										$section_subject_teacher = 
-										\App\SectionSubjectTeacher::find($student_subject_result->section_subject_teacher_id);
+										\App\Models\SectionSubjectTeacher::find($student_subject_result->section_subject_teacher_id);
 
 										$subject = 
-										\App\Subject::find($section_subject_teacher->subject_id);
+										\App\Models\Subject::find($section_subject_teacher->subject_id);
 
 										?>
 

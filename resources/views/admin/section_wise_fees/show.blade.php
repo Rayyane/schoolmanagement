@@ -6,13 +6,13 @@
 @section('content')
 <div class="container">
     <?php
-    $session = \App\Session::find($section_wise_fees->session_id);
-    $section = \App\Section::find($section_wise_fees->section_id);
-    $level_enroll = \App\LevelEnroll::find($section->level_enroll_id);
-    $level = App\Level::find($level_enroll->level_id);
-    $fees_type = \App\FeesType::find($section_wise_fees->fees_type_id);
-    $business_month = \App\BusinessMonth::find($section_wise_fees->business_month_id);
-    $user = \App\User::find($section_wise_fees->user_id);
+    $session = \App\Models\Session::find($section_wise_fees->session_id);
+    $section = \App\Models\Section::find($section_wise_fees->section_id);
+    $level_enroll = \App\Models\LevelEnroll::find($section->level_enroll_id);
+    $level = App\Models\Level::find($level_enroll->level_id);
+    $fees_type = \App\Models\FeesType::find($section_wise_fees->fees_type_id);
+    $business_month = \App\Models\BusinessMonth::find($section_wise_fees->business_month_id);
+    $user = \App\Models\User::find($section_wise_fees->user_id);
     ?>
     <br>
     <div class="row">

@@ -7,7 +7,7 @@
 <div class="container">
     <?php
     //$branch = \App\Branch::find($fiscal_year->branch_id);
-    $user = \App\User::find($category->created_by);
+    $user = \App\Models\User::find($category->created_by);
     ?>
     <br>
     <div class="row">

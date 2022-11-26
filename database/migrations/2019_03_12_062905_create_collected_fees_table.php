@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCollectedFeesTable extends Migration
 {
@@ -27,7 +27,6 @@ class CreateCollectedFeesTable extends Migration
             $table->foreign('section_student_id')->references('id')->on('section_students')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
-
         });
     }
 

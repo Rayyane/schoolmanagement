@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTeachersTable extends Migration
 {
@@ -27,7 +27,7 @@ class CreateTeachersTable extends Migration
             $table->string('permanent_address');
             $table->string('contact_no');
             $table->string('salary');
-            $table->string('teacher_photo',150)->unique();
+            $table->string('teacher_photo', 150)->unique();
             $table->softDeletes();
 
             $table->timestamps();

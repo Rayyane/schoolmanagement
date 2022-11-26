@@ -6,9 +6,9 @@
 @section('content')
 <div class="container">
     <?php
-    $branch = \App\Branch::find($fees_book->branch_id);
-    $user = \App\User::find($fees_book->creator_user_id);
-    $teacher = \App\Teacher::find($fees_book->teacher_id);
+    $branch = \App\Models\Branch::find($fees_book->branch_id);
+    $user = \App\Models\User::find($fees_book->creator_user_id);
+    $teacher = \App\Models\Teacher::find($fees_book->teacher_id);
     ?>
     <br>
     <div class="row">

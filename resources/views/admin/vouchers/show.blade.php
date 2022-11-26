@@ -7,9 +7,9 @@
 <div class="container">
     <?php
     //$branch = \App\Branch::find($fiscal_year->branch_id);
-    $user = \App\User::find($voucher->created_by);
-    $supplier = \App\Supplier::find($voucher->supplier_id);
-    $category = \App\Category::find($voucher->category_id);
+    $user = \App\Models\User::find($voucher->created_by);
+    $supplier = \App\Models\Supplier::find($voucher->supplier_id);
+    $category = \App\Models\Category::find($voucher->category_id);
     ?>
     <br>
     <div class="row">

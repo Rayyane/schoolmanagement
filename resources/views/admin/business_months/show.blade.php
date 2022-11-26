@@ -6,8 +6,8 @@
 @section('content')
 <div class="container">
     <?php
-    $fiscal_year = \App\FiscalYear::find($business_month->fiscal_year_id);
-    $user = \App\User::find($business_month->user_id);
+    $fiscal_year = \App\Models\FiscalYear::find($business_month->fiscal_year_id);
+    $user = \App\Models\User::find($business_month->user_id);
     ?>
     <br>
     <div class="row">

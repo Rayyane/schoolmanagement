@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
-use App\PaymentMethod;
 
 class PaymentMethodController extends Controller
 {
@@ -15,6 +15,7 @@ class PaymentMethodController extends Controller
     public function index()
     {
         $payment_method = PaymentMethod::all();
+
         return view('admin.payment_methods.index', ['payment_method' => $payment_method]);
     }
 
@@ -38,9 +39,10 @@ class PaymentMethodController extends Controller
     {
         //dd($request);
         $this->validate($request, ['method_name' => 'required|unique:payment_methods',
-                                   'created_by' => 'required']);
+            'created_by' => 'required', ]);
         $data = $request->only('method_name', 'created_by');
         $payment_method = PaymentMethod::create($data);
+
         return redirect('/payment_methods')->with('message', 'payment method added!');
     }
 
@@ -53,6 +55,7 @@ class PaymentMethodController extends Controller
     public function show($id)
     {
         $payment_method = PaymentMethod::find($id);
+
         return view('admin.payment_methods.show', ['payment_method' => $payment_method]);
     }
 
@@ -65,7 +68,8 @@ class PaymentMethodController extends Controller
     public function edit($id)
     {
         $payment_method = PaymentMethod::find($id);
-        return view('admin.payment_methods.edit', ['payment_method'=>$payment_method]);
+
+        return view('admin.payment_methods.edit', ['payment_method' => $payment_method]);
     }
 
     /**
@@ -79,10 +83,11 @@ class PaymentMethodController extends Controller
     {
         //$payment_method = PaymentMethod::find($id);
         $this->validate($request, ['method_name' => 'required|unique:payment_methods',
-                                   'created_by' => 'required']);
+            'created_by' => 'required', ]);
         $data = $request->only('method_name', 'created_by');
-        
+
         $payment_method->update($data);
+
         return redirect('/payment_methods')->with('message', 'data updated!');
     }
 
@@ -95,18 +100,21 @@ class PaymentMethodController extends Controller
     public function destroy($id)
     {
         $payment_method = PaymentMethod::find($id);
-        try{
+        try {
             $payment_method->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete this payment method');
+
             return redirect('/payment_methods')->with('message', 'This payment method cannot be deleted');
         }
+
         return redirect('/payment_methods')->with('message', 'Method deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $payment_methods = new PaymentMethod();
+
         return $payment_methods->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

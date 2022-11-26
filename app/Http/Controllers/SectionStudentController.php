@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SectionStudent;
+use App\Models\SectionStudent;
 use Illuminate\Http\Request;
 
 class SectionStudentController extends Controller
@@ -15,6 +15,7 @@ class SectionStudentController extends Controller
     public function index()
     {
         $section_students = SectionStudent::all();
+
         return view('admin.section_students.index', ['section_students' => $section_students]);
     }
 
@@ -49,6 +50,7 @@ class SectionStudentController extends Controller
     {
         $section_id = $id;
         $section_students = SectionStudent::where('section_id', $section_id)->get();
+
         return view('admin.section_students.index', ['section_students' => $section_students]);
     }
 
@@ -84,20 +86,22 @@ class SectionStudentController extends Controller
     public function destroy($id, Request $request)
     {
         $section_students = SectionStudent::find($id);
-        
-        
-        try{
+
+        try {
             $section_students->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $request->session()->flash('danger', 'Unable to delete section');
+
             return redirect('/sectionStudents')->with('message', 'Section cannot be deleted');
         }
+
         return redirect('/sectionStudents')->with('message', 'Section deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $section_student = new SectionStudent();
+
         return $section_student->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

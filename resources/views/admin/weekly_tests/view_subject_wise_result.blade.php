@@ -36,7 +36,7 @@ Weekly Result
 									
 
 										<?php
-										$student = \App\Student::find($student_subject_result->student_id);
+										$student = \App\Models\Student::find($student_subject_result->student_id);
             
 										?>
 

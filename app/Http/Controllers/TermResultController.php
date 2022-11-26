@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TermResult;
+use App\Models\TermResult;
 use Illuminate\Http\Request;
 
 class TermResultController extends Controller
@@ -15,6 +15,7 @@ class TermResultController extends Controller
     public function index()
     {
         $term_results = TermResult::all();
+
         return view('admin.term_results.index', ['term_results' => $term_results]);
     }
 

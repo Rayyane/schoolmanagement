@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Level;
-use App\Result;
-use App\Student;
-use App\Subject;
+use App\Models\Level;
+use App\Models\Result;
+use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use PHPUnit\Runner\ResultCacheExtensionTest;
 use Illuminate\Validation\Rule;
 
 class ResultController extends Controller
@@ -21,6 +19,7 @@ class ResultController extends Controller
     public function index()
     {
         $levels = Level::pluck('class_name', 'id');
+
         return view('admin.results.index', ['levels' => $levels]);
     }
 
@@ -37,7 +36,7 @@ class ResultController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,8 +52,7 @@ class ResultController extends Controller
             $subject_id = $request->subject_id[$i];
             $test_number = $request->test_number[$i];
             $subject_marks = $request->subject_marks[$i];
-            $data = ['student_id' => $student_id, 'subject_id' => $subject_id, 'test_number' => $test_number, 'subject_marks'
-            => $subject_marks];
+            $data = ['student_id' => $student_id, 'subject_id' => $subject_id, 'test_number' => $test_number, 'subject_marks' => $subject_marks];
             //Result::all();
             $result = Result::create($data);
             //dd($result);
@@ -66,8 +64,8 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Result $id
-     * @param  Request $request
+     * @param  Result  $id
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function show($id, Request $request)
@@ -92,7 +90,7 @@ class ResultController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -103,8 +101,8 @@ class ResultController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -115,7 +113,7 @@ class ResultController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -131,16 +129,16 @@ class ResultController extends Controller
         $student = $students->first();
         $id = $student->id;*/
         $this->validate($request, [
-            'test_number' => ['required','bail',Rule::unique('results')->where(function ($query) {
-                    return $query->where([
-                        /*['student_id', $id],*/
-                        /*['subject_id', 1],
+            'test_number' => ['required', 'bail', Rule::unique('results')->where(function ($query) {
+                return $query->where([
+                    /*['student_id', $id],*/
+                    /*['subject_id', 1],
                         ['test_number', 1],
                         ['subject_marks', 1],*/
-                        ]);
-                })]
-            ]);
-        
+                ]);
+            })],
+        ]);
+
         $test_number = $request->only('test_number');
         $testNumber = $test_number['test_number'];
         $levels = Level::find($level_id);
@@ -150,7 +148,6 @@ class ResultController extends Controller
         //dd($testNumber);
 
         return view('admin.results.list', ['subjects' => $subjects, 'level' => $level, 'test_number' => $testNumber]);
-
     }
 
     public function showResult(Request $request)
@@ -165,7 +162,6 @@ class ResultController extends Controller
         $testNumber = $test_number['test_number'];
         //dd($test_number);
         return view('admin.results.mark', ['students' => $students, 'subject' => $subject, 'level' => $level, 'testNumber' => $testNumber]);
-
     }
 
     public function chooseTestNumber(Request $request)
@@ -225,6 +221,7 @@ class ResultController extends Controller
     public function GetDataForDataTable(Request $request)
     {
         $result = new Result();
+
         return $result->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),
@@ -256,6 +253,7 @@ class ResultController extends Controller
         $array = $results->toArray();
         $result = array_unique($array);
         asort($result);
-        return view ('admin.results.choose_test_num', ['student'=>$student, 'results'=>$result]);
+
+        return view('admin.results.choose_test_num', ['student' => $student, 'results' => $result]);
     }
 }

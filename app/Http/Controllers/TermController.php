@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Term;
+use App\Models\Term;
 use Illuminate\Http\Request;
 
 class TermController extends Controller
@@ -15,6 +15,7 @@ class TermController extends Controller
     public function index()
     {
         $terms = Term::all();
+
         return view('admin.terms.index', ['terms' => $terms]);
     }
 
@@ -63,20 +64,20 @@ class TermController extends Controller
     public function edit($id)
     {
         $term = Term::find($id);
-        return view ('admin.terms.edit', ['term' => $term]);
+
+        return view('admin.terms.edit', ['term' => $term]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * 
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Term $term)
     {
         $data = $request->only('term_name');
-        $term -> update($data);
+        $term->update($data);
         //Session:flash('message', 'Area added');
         return redirect('/terms');
     }
@@ -92,17 +93,18 @@ class TermController extends Controller
         $term = Term::find($id);
         try {
             $term->delete();
-        }
-        catch (\Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/terms')->with('message', 'This term cannot be deleted');
         }
-        
+
         //Session::flash('message', " $name Has been deleted");
         return redirect('/terms')->with('message', 'Term deleted');
     }
 
-    public function GetDataForDataTable(Request $request) {
+    public function GetDataForDataTable(Request $request)
+    {
         $term = new Term();
+
         return $term->GetListForDataTable(
             $request->input('length'),
             $request->input('start'),

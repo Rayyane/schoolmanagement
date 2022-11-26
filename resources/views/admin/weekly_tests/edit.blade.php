@@ -25,13 +25,13 @@ Weekly Test
                         {!! Form::open(['method' => 'GET', 'url' => ['/weeklytest_updateMarks']]) !!}
                         {!! Form::hidden('term_id', $term_id, ['class'=> '']) !!}
                         <?php
-                        $student = \App\Student::find($student_subject_result->student_id);
+                        $student = \App\Models\Student::find($student_subject_result->student_id);
 
                         $sec_sub_teacher = 
-                        \App\SectionSubjectTeacher::find($student_subject_result->section_subject_teacher_id);
+                        \App\Models\SectionSubjectTeacher::find($student_subject_result->section_subject_teacher_id);
 
                         $subject = 
-                        \App\Subject::find($sec_sub_teacher->subject_id);
+                        \App\Models\Subject::find($sec_sub_teacher->subject_id);
 
                         ?>
                         <div class="row" style="align-content: center">

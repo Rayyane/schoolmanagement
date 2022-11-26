@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class UpdateLevelEnrollsTable extends Migration
 {
@@ -34,8 +34,6 @@ class UpdateLevelEnrollsTable extends Migration
     public function down()
     {
         Schema::table('level_enrolls', function (Blueprint $table) {
-            
-            
         });
     }
 }

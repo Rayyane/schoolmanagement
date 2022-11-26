@@ -83,10 +83,10 @@
                 <?php
 
                 $section_subject_teacher =
-                    \App\SectionSubjectTeacher::find($term_result->section_subject_teacher_id);
+                    \App\Models\SectionSubjectTeacher::find($term_result->section_subject_teacher_id);
 
                 $subject =
-                    \App\Subject::find($section_subject_teacher->subject_id);
+                    \App\Models\Subject::find($section_subject_teacher->subject_id);
 
                 $term_adjusted = (($term_result->term_marks) * 80) / 100;
 

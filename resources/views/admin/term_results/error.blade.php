@@ -15,8 +15,8 @@
                         	<?php
                             
                         	$term_result_id = $term_results->first()->id;
-                            $term_id = App\TermResult::find($term_result_id)->term_id;
-                        	$term = App\Term::find($term_id);
+                            $term_id = App\Models\TermResult::find($term_result_id)->term_id;
+                        	$term = App\Models\Term::find($term_id);
                         	//dd($term);
                         	?>
                             <h4 class="title">{{$term->term_name}} Information</h4>

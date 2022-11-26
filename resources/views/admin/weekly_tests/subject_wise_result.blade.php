@@ -32,7 +32,7 @@ Weekly Result
 									<tbody>
 
 										<?php
-										$subject = \App\Subject::find($sec_sub_teach->subject_id);
+										$subject = \App\Models\Subject::find($sec_sub_teach->subject_id);
             
 										?>
 

@@ -10,8 +10,8 @@
 @section('content')
 <div class="content">
     <?php
-    $sections = \App\Section::where('teacher_id', $teacher->id)->get();
-    $section_subject_teachers = \App\SectionSubjectTeacher::where('teacher_id', $teacher->id)->get();
+    $sections = \App\Models\Section::where('teacher_id', $teacher->id)->get();
+    $section_subject_teachers = \App\Models\SectionSubjectTeacher::where('teacher_id', $teacher->id)->get();
     
     ?>
     <div class="row">
@@ -135,7 +135,7 @@
                     {!! Form::label('class_teacher','Class Teacher of Section:') !!}
                     @foreach($sections as $section)
                     <?php
-                    $level_enroll = \App\LevelEnroll::find($section->level_enroll_id);
+                    $level_enroll = \App\Models\LevelEnroll::find($section->level_enroll_id);
                     ?>
                     {!! Form::label('class_teacher', isset($section->section_name) ? $section->section_name : null, ['class'=> 'form-control']) !!} 
                     @endforeach
@@ -147,8 +147,8 @@
                         {!! Form::label('','(Class:)') !!}
                         @foreach($sections as $section)
                         <?php
-                        $level_enroll = \App\LevelEnroll::find($section->level_enroll_id);
-                        $level = \App\Level::find($level_enroll->level_id);
+                        $level_enroll = \App\Models\LevelEnroll::find($section->level_enroll_id);
+                        $level = \App\Models\Level::find($level_enroll->level_id);
                         ?>
                             
                             {!! Form::label('class_name', isset($level->class_name) ? $level->class_name : null, ['class'=> 'form-control']) !!}
@@ -163,7 +163,7 @@
                     @foreach($section_subject_teachers as $section_subject_teacher)
 
                     <?php
-                    $subject = \App\Subject::find($section_subject_teacher->subject_id);
+                    $subject = \App\Models\Subject::find($section_subject_teacher->subject_id);
                     ?>
                     
                     {!! Form::label('subject_teacher', isset($subject->subject_name) ? $subject->subject_name : null, ['class'=> 'form-control']) !!}
@@ -177,7 +177,7 @@
                     @foreach($section_subject_teachers as $section_subject_teacher)
 
                     <?php
-                    $section = \App\Section::find($section_subject_teacher->section_id);
+                    $section = \App\Models\Section::find($section_subject_teacher->section_id);
                     ?>
                     
                     {!! Form::label('section_name', isset($section->section_name) ? $section->section_name : null, ['class'=> 'form-control']) !!}
@@ -191,9 +191,9 @@
                     @foreach($section_subject_teachers as $section_subject_teacher)
 
                     <?php
-                    $section = \App\Section::find($section_subject_teacher->section_id);
-                    $level_enroll = \App\LevelEnroll::find($section->level_enroll_id);
-                    $level = \App\Level::find($level_enroll->level_id);
+                    $section = \App\Models\Section::find($section_subject_teacher->section_id);
+                    $level_enroll = \App\Models\LevelEnroll::find($section->level_enroll_id);
+                    $level = \App\Models\Level::find($level_enroll->level_id);
                     ?>
                     
                     {!! Form::label('class_name', isset($level->class_name) ? $level->class_name : null, ['class'=> 'form-control']) !!}
